@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
 
   <groupId>PatronesCreacionales</groupId>
   <artifactId>PatronesCreacionales</artifactId>
@@ -9,15 +10,17 @@
 
   <name>PatronesCreacionales</name>
   <url>http://maven.apache.org</url>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.organization>mincong-h-github</sonar.organization>
     
   <sonar.projectKey>davidc7910_jaxen</sonar.projectKey>
   <sonar.organization>davidc7910</sonar.organization>
   <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   <sonar.login>389a299e77dc689fcc97efd0f40571ca82f2abe0</sonar.login>
   </properties>
+  
   
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
@@ -38,8 +41,60 @@
         <artifactId>maven-repository-plugin</artifactId>
         <version>2.3.1</version>
       </plugin>
+      <plugin>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.5.0.1254</version>
+      <executions>
+        <execution>
+          <phase>verify</phase>
+          <goals>
+            <goal>sonar</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.2</version>
+      <configuration>
+        <append>true</append>
+      </configuration>
+      <executions>
+        <execution>
+          <id>prepare-agent</id>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>prepare-agent-integration</id>
+          <goals>
+            <goal>prepare-agent-integration</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>jacoco-site</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>report</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+      </plugin>
   </plugins>
   </build>
+  
+
 
   <dependencies>
     <dependency>
@@ -49,4 +104,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
 </project>
